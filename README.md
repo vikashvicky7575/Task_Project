@@ -56,7 +56,7 @@ A full-stack MERN application for managing projects and tasks (Jira-style Kanban
 
 ### DataBase UI
 ![User DataBase](./assets/User_Database.png)
-![ProjectList DataBase](./assets/Projectlist.png)
+![ProjectList DataBase](./assets/Projectlist_DataBase.png)
 ![TaskList DataBase](./assets/TaskList_DataBase.png)
 
 ---
