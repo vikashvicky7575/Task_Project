@@ -28,10 +28,18 @@ exports.getProjects = async (req, res, next) => {
   }
 };
 
-//deleteProject
+//deleteProject 
 exports.deleteProject = async (req, res, next) => {
   try {
-    await Project.findByIdAndDelete(req.params.id);
+    const project = await Project.findOneAndDelete({
+      _id: req.params.id,
+      createdBy: req.user.id   // ✅ only owner can delete
+    });
+
+    if (!project) {
+      return res.status(404).json({ message: "Project not found" });
+    }
+
     res.json({ message: "Project deleted successfully" });
   } catch (error) {
     next(error);
