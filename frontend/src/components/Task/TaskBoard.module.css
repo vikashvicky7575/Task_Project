@@ -1,0 +1,19 @@
+.column {
+  background: #f9fafb;
+  padding: 15px;
+  border-radius: 10px;
+  min-height: 400px;
+}
+
+.taskCard {
+  background: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+  transition: 0.2s;
+}
+
+.taskCard:hover {
+  transform: translateY(-3px);
+}

@@ -1,24 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Login from './Pages/Login/Login';
+import Register from './Pages/Register/Register';
+import Dashboard from './Pages/Dashboard/Dashboard';
+import TaskPage from "./Pages/TaskPage/TaskPage";
+import ProtectedRoute from './components/ProtectedRoutes';
+import { Toaster } from "react-hot-toast";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    {/* for notification onces the sumbit the data success or not */}
+    <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 2000,
+          style: {
+            borderRadius: "8px",
+            background: "#fff",
+            color: "#333",
+          },
+        }}
+      />
+
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/project/:projectId/tasks" element={<TaskPage />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 

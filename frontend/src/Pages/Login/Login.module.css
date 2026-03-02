@@ -1,0 +1,12 @@
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, #4e73df, #1cc88a);
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #4e73df;
+}
