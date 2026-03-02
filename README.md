@@ -103,7 +103,7 @@ http://localhost:5000
 
 ---
 
-# 💻 Frontend Setup
+# Frontend Setup
 
 ```bash
 cd frontend
@@ -175,7 +175,7 @@ http://localhost:3000
 
 ---
 
-# 🗃 Database Relationships
+# Database Relationships
 
 - One User ➝ Multiple Projects
 - One Project ➝ Multiple Tasks
