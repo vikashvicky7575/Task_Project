@@ -1,70 +1,219 @@
-# Getting Started with Create React App
+# ProjectFlow – Project & Task Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack MERN application for managing projects and tasks (Jira-style Kanban board).
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+-  User Authentication (Login / Register)
+-  Create & Delete Projects
+-  Manage Tasks inside Projects
+-  Kanban Board (Todo / In Progress / Completed)
+-  Due Date Management
+-  Toast Notifications
+-  Form Validation using Formik & Yup
+-  Modern UI with Bootstrap 5 + CSS Modules
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠 Tech Stack
 
-### `npm test`
+### Frontend
+- React.js
+- Bootstrap 5
+- Formik
+- Yup
+- React Router
+- Axios
+- React Hot Toast
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT Authentication
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## UI Screenshots
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Login Page
+![Login](./assets/login_ui.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Register Page
+![Login](./assets/Register_UI.png)
 
-### `npm run eject`
+### Dashboard
+![Dashboard](./assets/AddProject_Ui.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### ProjectList
+![Dashboard](./assets/ProjectList_Ui.png)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Task Board
+![Task Board](./assets/Task_UI.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# Installation Guide
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🔹 1️⃣ Clone the Repository
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+git clone https://github.com/vikashvicky7575/Task_Project.git
+cd Task Project
+```
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#  Backend Setup
 
-### Analyzing the Bundle Size
+```bash
+cd backend
+npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Create `.env` file inside backend folder
 
-### Making a Progressive Web App
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+for demo i used this jwt & mongoDB:
+# mongoDB Connection
+MONGO_URI=mongodb://127.0.0.1:27017/project_management
+# JWT Key
+JWT_SECRET=3e28a5ca8280903f02217caf0739266ca9d625e347d757c38e11d2eff2a49debe83320cbe223f824027669da29903198076530fee2aaf6e0417bcf6183d81829
+```
 
-### Advanced Configuration
+### Run Backend Server
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+npm run dev
+```
 
-### Deployment
+Backend runs on:
+```
+http://localhost:5000
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+# 💻 Frontend Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+cd frontend
+npm install
+```
+
+### Create `.env` file inside frontend folder
+
+```env
+REACT_APP_API_URL=http://localhost:5000/api
+```
+
+### Run Frontend
+
+```bash
+npm start
+```
+
+Frontend runs on:
+```
+http://localhost:3000
+```
+
+---
+
+# Authentication Flow
+
+1. User registers or logs in.
+2. Backend validates credentials.
+3. Backend generates JWT token.
+4. Token is sent to frontend.
+5. Frontend stores token in localStorage.
+6. Axios automatically attaches token to protected API requests.
+7. Backend middleware verifies token before allowing access.
+
+---
+
+# API Endpoints
+
+---
+
+## Auth Routes
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | /api/auth/register | Register a new user |
+| POST | /api/auth/login | Login user |
+
+---
+
+## Project Routes
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | /api/projects | Get all user projects |
+| POST | /api/projects | Create a project |
+| DELETE | /api/projects/:id | Delete project |
+
+---
+
+## Task Routes
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | /api/task | Create task |
+| GET | /api/task/:projectId | Get tasks by project |
+| PATCH | /api/task/:id | Update task status |
+| DELETE | /api/task/:id | Delete task |
+
+---
+
+# 🗃 Database Relationships
+
+- One User ➝ Multiple Projects
+- One Project ➝ Multiple Tasks
+- One Task ➝ Belongs to one Project and one User
+
+---
+
+# Application Workflow
+
+1. User logs in.
+2. Dashboard loads all projects.
+3. User selects a project.
+4. Task board displays tasks in 3 columns:
+   - Todo
+   - In Progress
+   - Completed
+5. User can:
+   - Add Task
+   - Update Status
+   - Delete Task
+6. Changes update MongoDB instantly.
+
+---
+
+# Future Improvements
+
+- Drag & Drop functionality
+- Task priority levels
+- Task comments
+- Role-based access
+- Real-time updates (Socket.io)
+- Deployment (Render / Vercel)
+
+---
+
+**Vikash Kumar**  
+MERN Stack Developer  
+
+GitHub: https://github.com/vikashvicky7575
+
+---
